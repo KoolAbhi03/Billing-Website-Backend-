@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 // Routes 
-
+const authRoutes = require("./routes/auth")
 
 
 // DataBase Connection
@@ -27,6 +27,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
+
+// My Routes
+app.use("/demo",authRoutes);
+
 
 // PORT 
 const port = process.env.PORT || 8000;
