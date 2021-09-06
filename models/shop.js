@@ -5,7 +5,7 @@ const {ObjectId} = mongoose.Schema;
 
 var shopSchema = new mongoose.Schema(
     {
-        ShopName: {
+        shopName: {
           type: String,
           required: true,
           maxlength: 32,
@@ -17,7 +17,7 @@ var shopSchema = new mongoose.Schema(
           required: true,
           unique: true
         },
-        Shopinfo: {
+        shopInfo: {
           type: String,
           trim: true
         },
@@ -30,7 +30,7 @@ var shopSchema = new mongoose.Schema(
           type: Number,
           default: 1
         },
-        Bills: {
+        bills: {
           type: Array,
           of:ObjectId,
           ref:"Bills",
