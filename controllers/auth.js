@@ -159,3 +159,12 @@ exports.isAdmin = (req, res, next) => {
   }
   next();
 };
+
+exports.isShop = (req, res, next) => {
+  if (req.profile.role === 1) {
+    return res.status(403).json({
+      error: "You are not Shop Owner, Access denied"
+    });
+  }
+  next();
+};
