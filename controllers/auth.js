@@ -1,5 +1,4 @@
 var expressJwt = require("express-jwt");
-
 //signout
 exports.signout = (req, res) => {
   res.clearCookie("token");
