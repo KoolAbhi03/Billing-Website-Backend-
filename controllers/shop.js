@@ -36,4 +36,3 @@ exports.updateShop = (req, res) => {
       }
     );
 };
-  
