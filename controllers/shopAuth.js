@@ -17,7 +17,7 @@ exports.shopSignup = (req, res) => {
     shop.save((err, customer) => {
         if (err) {
         return res.status(400).json({
-            err: "NOT able to save Customer in DB"
+            err: "NOT able to save Shop in DB"
         });
         }
         res.json({

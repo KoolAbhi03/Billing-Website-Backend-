@@ -11,7 +11,7 @@ exports.signout = (req, res) => {
 exports.isSignedIn = expressJwt({
   secret: process.env.SECRET,
   UserProperty: "auth",
-  algorithms:['RS256']
+  algorithms: ['sha1', 'RS256', 'HS256']
 });
 
 //custom middlewares
@@ -26,7 +26,7 @@ exports.isAuthenticated = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-  if (req.profile.role === 2) {
+  if (!req.profile.role === 2) {
     return res.status(403).json({
       error: "You are not ADMIN, Access denied"
     });
@@ -35,7 +35,7 @@ exports.isAdmin = (req, res, next) => {
 };
 
 exports.isShop = (req, res, next) => {
-  if (req.profile.role === 1) {
+  if (!req.profile.role === 1) {
     return res.status(403).json({
       error: "You are not Shop Owner, Access denied"
     });

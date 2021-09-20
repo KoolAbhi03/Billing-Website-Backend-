@@ -7,24 +7,21 @@ const ItemSchema = new mongoose.Schema({
     price: Number
 });
   
-const Items = mongoose.model("Items", ItemSchemaSchema);
 
 const billSchema = new mongoose.Schema(
     {
-        Shop:{
+        shop:{
             type: ObjectId,
             ref: "Shop",
             required: true
         },
         customer:{
             type: ObjectId,
-            ref: "Customer",
-            required: true
+            ref:"Customer",
+            required:true
         },
         items: [ItemSchema]
     }
 )
 
-const Bill = mongoose.model("Bill", billSchema);
-
-module.exports = {Items, Bill};
+module.exports = mongoose.model("Bill", billSchema);

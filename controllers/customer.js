@@ -8,7 +8,7 @@ exports.getCustomerbyId = (req,res,next,id) => {
                 error: "Customer not exist in DB"
             })
         }
-        req.profile = Customer;
+        req.profile.customer = Customer;
         next();
     })
 }
