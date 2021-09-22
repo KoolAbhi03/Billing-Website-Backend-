@@ -4,7 +4,7 @@ const router = express.Router();
 const {isAdmin,isShop,isAuthenticated,isSignedIn} = require('../controllers/auth')
 
 const {getBillById,createBill,getBill} = require('../controllers/bill')
-const {getCustomerbyId} = require('../controllers/customer')
+const {getCustomerbyId,pushBill} = require('../controllers/customer')
 const {getShopbyId} = require('../controllers/shop')
 
 // params
@@ -16,6 +16,7 @@ router.post(
     "/bill/create/:shopId",
     isSignedIn,
     isShop,
+    pushBill,
     createBill
 )
 

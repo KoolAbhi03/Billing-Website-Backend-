@@ -20,7 +20,11 @@ const billSchema = new mongoose.Schema(
             ref:"Customer",
             required:true
         },
-        items: [ItemSchema]
+        items: [ItemSchema],
+        payment_mode:{
+            type:String,
+            default:"Cash"
+        }
     }
 )
 

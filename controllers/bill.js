@@ -1,4 +1,6 @@
 const Bill = require('../models/bill')
+const Customer = require('../models/customer')
+const Shop = require('../models/shop')
 
 exports.getBillById = (req,res,next,id)=> {
     Bill.findById(id).exec((err, bill)=>{
@@ -13,6 +15,7 @@ exports.getBillById = (req,res,next,id)=> {
 }
 
 exports.createBill = (req, res) => {
+    req.body.shop = req.profile._id;
     const bill = new Bill(req.body);
     bill.save((err,bill)=> {
         if(err){
@@ -22,6 +25,7 @@ exports.createBill = (req, res) => {
         }
         res.json({bill})
     });
+    
 }
 
 exports.getBill = (req,res)=>{

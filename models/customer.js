@@ -37,8 +37,6 @@ var customerSchema = new mongoose.Schema(
         },
         Bills: {
           type: Array,
-          of:ObjectId,
-          ref:"Bills",
           default: []
         }
     }
