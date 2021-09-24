@@ -31,3 +31,43 @@ exports.createBill = (req, res) => {
 exports.getBill = (req,res)=>{
     return res.json(req.bill);
 }
+exports.pushBill = (req,res,next) => {
+    let bills = []
+    bills.push({"shop":req.profile._id});
+    req.body.items.forEach(item => {
+        bills.push({
+            name:item.name,
+            quantity:item.quantity,
+            price:item.price
+        })
+    })
+    console.log(bills);
+    Customer.findOneAndUpdate(
+      {_id:req.body.customer},
+      {$push:{Bills:{bills}}},
+      {new : true,useFindAndModify:false},
+      (err,customer)=>{
+        if(err){
+          return res.status(400).json({
+            error:"nof"
+          })
+        }
+      }
+    )
+    bills[0]={"customer":req.body.customer};
+    console.log(bills);
+    Shop.findOneAndUpdate(
+      {_id:req.profile._id},
+      {$push : {bills:{bills}}},
+      {new:true,useFindAndModify:false},
+      (err,shop)=>{
+        if(err){
+          return res.status(400).json({
+            error:"nof2"
+          })
+        }
+        console.log(shop);
+      }
+    )
+    next();
+  }

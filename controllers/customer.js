@@ -1,6 +1,7 @@
 const Customer = require("../models/customer");
 const Bill = require("../models/bill");
-
+const Shop = require("../models/shop");
+const bill = require("../models/bill");
 exports.getCustomerbyId = (req,res,next,id) => {
     Customer.findById( id, (err,Customer)=>{
         if(err || !Customer ){
@@ -37,30 +38,3 @@ exports.updateCustomer = (req, res) => {
     );
 };
 
-exports.pushBill = (req,res,next) => {
-  let bills = []
-  bills.push({"shop":req.profile._id});
-  req.body.items.forEach(item => {
-      bills.push({
-          name:item.name,
-          quantity:item.quantity,
-          price:item.price
-      })
-  })
-  console.log(bills);
-  Customer.findOneAndUpdate(
-    {_id:req.body.customer},
-    {$push:{Bills:{bills}}},
-    {new : true,useFindAndModify:false},
-    (err,customer)=>{
-      if(err){
-        return res.status(400).json({
-          error:"nof"
-        })
-      }
-      console.log(customer);
-      next();
-    }
-  )
-
-}
