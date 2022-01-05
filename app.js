@@ -12,6 +12,8 @@ const authRoutes = require("./routes/auth")
 const customerAuthRoutes = require("./routes/customerAuth")
 const shopAuthRoutes = require("./routes/shopAuth")
 const billRoutes = require("./routes/bill")
+const customerRoutes = require("./routes/customer")
+
 
 // DataBase Connection
 mongoose
@@ -35,7 +37,7 @@ app.use("/demo",authRoutes);
 app.use("/demo",customerAuthRoutes);
 app.use("/demo",shopAuthRoutes);
 app.use("/demo",billRoutes);
-
+app.use("/demo",customerRoutes)
 // PORT 
 const port = process.env.PORT || 8000;
 

@@ -9,7 +9,7 @@ exports.getCustomerbyId = (req,res,next,id) => {
                 error: "Customer not exist in DB"
             })
         }
-        req.profile.customer = Customer;
+        req.profile = Customer;
         next();
     })
 }
@@ -38,3 +38,13 @@ exports.updateCustomer = (req, res) => {
     );
 };
 
+exports.getBillsCustomer = (req,res) => {
+  Customer.findById({_id:req.profile._id},(err,customer)=>{
+    if(err){
+      return res.status(400).json({
+        error: "error"
+      })
+    }
+    res.json({Bills:customer.Bills});
+  })
+}

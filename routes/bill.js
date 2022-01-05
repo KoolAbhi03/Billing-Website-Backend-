@@ -15,6 +15,7 @@ router.param("billId",getBillById);
 router.post(
     "/bill/create/:shopId",
     isSignedIn,
+    isAuthenticated,
     isShop,
     pushBill,
     createBill
